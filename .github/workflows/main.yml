@@ -1,24 +1,73 @@
-name: Deploy Website
+name: Deploy Team Website to GitHub Pages
 
 on:
   push:
     branches:
       - main
       - test1
+  workflow_dispatch:
 
 permissions:
-  contents: write   # 🔥 THIS FIXES ERROR 128
+  contents: read
+  pages: write
+  id-token: write
+
+# 🔧 TEMP: disable concurrency to avoid duplicate artifacts
+# (you can re-enable later once stable)
+# concurrency:
+#   group: "pages"
+#   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ──────── VALIDATION CHECKS ────────
+      - name: Check if index.html exists
+        run: |
+          if [ ! -f "index.html" ]; then
+            echo "❌ ERROR: index.html is missing! Deployment rejected."
+            exit 1
+          fi
+          echo "✅ index.html found."
+
+      - name: Check for required files
+        run: |
+          echo "Checking additional files..."
+          [ -f "styles.css" ] && echo "✅ styles.css found." || echo "⚠️ styles.css is missing (recommended)"
+          [ -f "main.js" ] && echo "✅ main.js found." || echo "⚠️ main.js is missing (recommended)"
+
+      - name: Validate HTML syntax
+        run: |
+          echo "Installing HTML validator..."
+          sudo apt-get update
+          sudo apt-get install -y tidy
+          echo "Validating index.html..."
+          tidy -q -e index.html || {
+            echo "❌ HTML validation failed! Fix errors before pushing."
+            exit 1
+          }
+          echo "✅ HTML syntax is valid."
+
+      # ──────── DEPLOYMENT ────────
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      # ✅ FIX: explicitly define artifact name
+      - name: Upload artifact for deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: github-pages
+          path: '.'
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
