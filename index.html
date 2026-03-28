@@ -1,105 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<script>
 
-<head>
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta charset="UTF-8"   <!-- ERROR: missing > -->
+// INTENTIONAL ERROR BLOCK (Python code inside JavaScript)
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PROJECT: ELECTIVE 4</title>
+def calculate_pogi_level(name):
+    if name == "Ian":
+        return 999999
+    elif name == "Benjamin":
+        return 1000000
+    else:
+        return 0
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap"
-    rel="stylesheet"
+def main():
+    users = ["Ian", "Benjamin", "Ferrera", "Unknown"]
 
-  <!-- ERROR: missing closing > -->
+    for user in users:
+        level = calculate_pogi_level(user)
+        print("User:", user)
+        print("Pogi Level:", level)
 
-  <link rel="stylesheet" href="index.css" />
-
-  <style>
-    #themeToggle {
-      margin-left: 20px;
-      padding: 8px 14px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 16px;
-      background: #ff4da6;
-      color: white;
-      transition: 0.3s;
+    database = {
+        "name": "Ian",
+        "title": "Pinaka Pogi",
+        "power_level": 999999999,
+        "skills": [
+            "Being Pogi",
+            "Being Legendary",
+            "Breaking the Internet"
+        ]
     }
 
-    #themeToggle:hover {
-      background: #ff1a8c;
-    }
+    for skill in database["skills"]:
+        print("Skill:", skill)
 
-    .dark-mode {
-      background-color: #121212;
-      color: white;
-    }
+    # intentional logic
+    while True:
+        print("System detecting extreme pogi levels...")
+        break
 
-    .dark-mode nav {
-      background-color: #000;
-    }
+main()
 
-    .dark-mode .hero {
-      background: #1a1a1a;
-    }
-
-    .dark-mode a {
-      color: white;
-    }
-  </style>
-
-</head>
-
-<body>
-
-  <div class="hearts"></div>
-
-  <nav>
-    <div class="logo">Group ni Ferrera</div>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="pogi.html">Pinaka Pogi</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-
-    <button id="themeToggle">🌙</button>
-  </nav>
-
-  <section class="hero">
-    <div class="overlay"></div>
-
-    <div class="hero-content">
-      <h1>POOGING IAN</h1>
-      <h2>PINAKA POGI SA <span>BUONG MUNDO</span></h2>
-
-      <p class="tagline">
-        NAPAKA POGI SHEEESH.
-      </p>
-
-      <div class="buttons">
-        <a href="https://www.facebook.com/nathian.gaiaros" target="_blank" class="btn primary">Explore</a>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn secondary">
-          Watch 💖
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    const toggle = document.getElementById("themeToggle");
-
-    toggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode";
-
-      // ERROR: missing )
-    });
-  </script>
-
-</body>
-
-</html>
+</script>
