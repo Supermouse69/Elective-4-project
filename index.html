@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="index.css" />
 
-  <!-- Dark Mode Style -->
+  <!-- Dark Mode + Scroll Button Style -->
   <style>
     #themeToggle {
       margin-left: 20px;
@@ -47,6 +47,27 @@
 
     .dark-mode a {
       color: white;
+    }
+
+    /* Scroll to Top Button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 10px 14px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50%;
+      background: #ff4da6;
+      color: white;
+      cursor: pointer;
+      display: none;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    #scrollTopBtn:hover {
+      background: #ff1a8c;
     }
   </style>
 
@@ -89,8 +110,12 @@
     </div>
   </section>
 
-  <!-- Dark Mode Script -->
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn">⬆️</button>
+
+  <!-- Scripts -->
   <script>
+    // Dark Mode Toggle
     const toggle = document.getElementById("themeToggle");
 
     toggle.addEventListener("click", () => {
@@ -101,6 +126,24 @@
       } else {
         toggle.textContent = "🌙";
       }
+    });
+
+    // Scroll to Top Feature
+    const scrollBtn = document.getElementById("scrollTopBtn");
+
+    window.onscroll = function () {
+      if (document.documentElement.scrollTop > 100) {
+        scrollBtn.style.display = "block";
+      } else {
+        scrollBtn.style.display = "none";
+      }
+    };
+
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     });
   </script>
 
