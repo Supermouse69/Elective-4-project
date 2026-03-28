@@ -91,13 +91,11 @@ function loadProfile() {
     const member = teamMembers.find(m => m.id === id)
     if (!member) { window.location.href = 'index.html'; return }
 
-    // Hero & basic info
     document.getElementById('profile-hero-image').src = member.heroImage
     document.getElementById('profile-name').textContent = member.name
     document.getElementById('profile-role').textContent = member.role
     document.getElementById('profile-bio').textContent = member.bio
 
-    // Favorites & Fun Facts cards
     const infoContainer = document.getElementById('info-cards')
     infoContainer.innerHTML = `
         <div class="bg-white dark:bg-zinc-900 rounded-3xl p-8 shadow-xl">
@@ -131,10 +129,10 @@ function toggleDarkMode() {
     const html = document.documentElement
     const isDark = !html.classList.contains('dark')
     html.classList.toggle('dark')
-    localStorage.setItem('darkMode', isDark)   // saved like your old script
+    localStorage.setItem('darkMode', isDark)   
 }
 
-function handleContact(e) { /* unchanged - your nice success message */ }
+function handleContact(e) { }
 
 function setActiveNav() {
     const path = window.location.pathname.split('/').pop() || 'index.html'
@@ -148,14 +146,14 @@ function setActiveNav() {
 function init() {
     initializeTailwind()
 
-    // === EXACT SAME LOGIC AS YOUR OLD script.js ===
+
     const saved = localStorage.getItem('darkMode')
     const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     const useDark = saved !== null ? saved === 'true' : systemDark
 
     if (useDark) document.documentElement.classList.add('dark')
 
-    // Update gear icon to sun/moon if you want (optional)
+
     const icon = document.getElementById('theme-icon')
     if (icon) icon.classList.toggle('fa-sun', useDark)
 
