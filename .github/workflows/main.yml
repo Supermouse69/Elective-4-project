@@ -12,11 +12,6 @@ permissions:
   pages: write
   id-token: write
 
-# 🔧 TEMP: disable concurrency to avoid duplicate artifacts
-# (you can re-enable later once stable)
-# concurrency:
-#   group: "pages"
-#   cancel-in-progress: true
 
 jobs:
   build-and-deploy:
@@ -26,7 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ──────── VALIDATION CHECKS ────────
+
       - name: Check if index.html exists
         run: |
           if [ ! -f "index.html" ]; then
@@ -53,11 +48,10 @@ jobs:
           }
           echo "✅ HTML syntax is valid."
 
-      # ──────── DEPLOYMENT ────────
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      # ✅ FIX: explicitly define artifact name
+
       - name: Upload artifact for deployment
         uses: actions/upload-pages-artifact@v3
         with:
