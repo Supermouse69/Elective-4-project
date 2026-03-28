@@ -2,17 +2,21 @@ name: Deploy Team Website to GitHub Pages
 
 on:
   push:
-    branches: [ "main", "test1" ]
-  workflow_dispatch:   # Allows manual trigger if needed
+    branches:
+      - main
+      - test1
+  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+# 🔧 TEMP: disable concurrency to avoid duplicate artifacts
+# (you can re-enable later once stable)
+# concurrency:
+#   group: "pages"
+#   cancel-in-progress: true
 
 jobs:
   build-and-deploy:
@@ -22,7 +26,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ──────── VALIDATION CHECKS (Runs FIRST) ────────
+      # ──────── VALIDATION CHECKS ────────
       - name: Check if index.html exists
         run: |
           if [ ! -f "index.html" ]; then
@@ -35,30 +39,30 @@ jobs:
         run: |
           echo "Checking additional files..."
           [ -f "styles.css" ] && echo "✅ styles.css found." || echo "⚠️ styles.css is missing (recommended)"
-          [ -f "main.js" ] && echo "✅ main.js found." || echo "⚠️ script.js is missing (recommended)"
+          [ -f "main.js" ] && echo "✅ main.js found." || echo "⚠️ main.js is missing (recommended)"
 
       - name: Validate HTML syntax
         run: |
           echo "Installing HTML validator..."
+          sudo apt-get update
           sudo apt-get install -y tidy
           echo "Validating index.html..."
           tidy -q -e index.html || {
-            echo "❌ HTML validation failed! Please fix the errors in index.html before pushing."
-            echo "Common issues: missing tags, broken quotes, or invalid structure."
+            echo "❌ HTML validation failed! Fix errors before pushing."
             exit 1
           }
           echo "✅ HTML syntax is valid."
 
-      # You can add more checks here later if needed
-
-      # ──────── DEPLOYMENT (Only runs if all checks above pass) ────────
+      # ──────── DEPLOYMENT ────────
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
+      # ✅ FIX: explicitly define artifact name
       - name: Upload artifact for deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'     # Deploy all files from the root folder
+          name: github-pages
+          path: '.'
 
       - name: Deploy to GitHub Pages
         id: deployment
