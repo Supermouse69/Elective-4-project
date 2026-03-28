@@ -13,6 +13,43 @@
     rel="stylesheet">
 
   <link rel="stylesheet" href="index.css" />
+
+  <!-- Dark Mode Style -->
+  <style>
+    #themeToggle {
+      margin-left: 20px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      background: #ff4da6;
+      color: white;
+      transition: 0.3s;
+    }
+
+    #themeToggle:hover {
+      background: #ff1a8c;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: white;
+    }
+
+    .dark-mode nav {
+      background-color: #000;
+    }
+
+    .dark-mode .hero {
+      background: #1a1a1a;
+    }
+
+    .dark-mode a {
+      color: white;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -27,6 +64,9 @@
       <li><a href="pogi.html">Pinaka Pogi</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+
+    <!-- Dark Mode Button -->
+    <button id="themeToggle">🌙</button>
   </nav>
 
   <section class="hero">
@@ -41,7 +81,7 @@
       </p>
 
       <div class="buttons">
-        <a href="" target="_blank" class="btn primary">Explore</a>
+        <a href="https://www.facebook.com/nathian.gaiaros" target="_blank" class="btn primary">Explore</a>
         <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn secondary">
           Watch 💖
         </a>
@@ -49,7 +89,20 @@
     </div>
   </section>
 
+  <!-- Dark Mode Script -->
+  <script>
+    const toggle = document.getElementById("themeToggle");
 
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+
+      if (document.body.classList.contains("dark-mode")) {
+        toggle.textContent = "☀️";
+      } else {
+        toggle.textContent = "🌙";
+      }
+    });
+  </script>
 
 </body>
 
