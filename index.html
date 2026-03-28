@@ -5,16 +5,18 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"   <!-- ERROR: missing > -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PROJECT: ELECTIVE 4</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap"
-    rel="stylesheet">
+    rel="stylesheet"
+
+  <!-- ERROR: missing closing > -->
 
   <link rel="stylesheet" href="index.css" />
 
-  <!-- Dark Mode + Scroll Button Style -->
   <style>
     #themeToggle {
       margin-left: 20px;
@@ -48,27 +50,6 @@
     .dark-mode a {
       color: white;
     }
-
-    /* Scroll to Top Button */
-    #scrollTopBtn {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      padding: 10px 14px;
-      font-size: 18px;
-      border: none;
-      border-radius: 50%;
-      background: #ff4da6;
-      color: white;
-      cursor: pointer;
-      display: none;
-      transition: 0.3s;
-      z-index: 1000;
-    }
-
-    #scrollTopBtn:hover {
-      background: #ff1a8c;
-    }
   </style>
 
 </head>
@@ -86,7 +67,6 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
 
-    <!-- Dark Mode Button -->
     <button id="themeToggle">🌙</button>
   </nav>
 
@@ -110,40 +90,13 @@
     </div>
   </section>
 
-  <!-- Scroll to Top Button -->
-  <button id="scrollTopBtn">⬆️</button>
-
-  <!-- Scripts -->
   <script>
-    // Dark Mode Toggle
     const toggle = document.getElementById("themeToggle");
 
     toggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("dark-mode";
 
-      if (document.body.classList.contains("dark-mode")) {
-        toggle.textContent = "☀️";
-      } else {
-        toggle.textContent = "🌙";
-      }
-    });
-
-    // Scroll to Top Feature
-    const scrollBtn = document.getElementById("scrollTopBtn");
-
-    window.onscroll = function () {
-      if (document.documentElement.scrollTop > 100) {
-        scrollBtn.style.display = "block";
-      } else {
-        scrollBtn.style.display = "none";
-      }
-    };
-
-    scrollBtn.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+      // ERROR: missing )
     });
   </script>
 
