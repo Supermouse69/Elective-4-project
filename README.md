@@ -32,7 +32,6 @@ Perfect for portfolios, team introductions, or class projects that need to look 
 | `profile.html`  | Individual member profile (favorite food, drink, hobby, fun fact, quote) |
 | `about.html`    | Company mission, values, and stats |
 | `projects.html` | (Ready for future project showcase) |
-| `careers.html`  | Open positions with apply buttons |
 | `contact.html`  | Contact form + company info |
 
 ## 🛠 Tech Stack
@@ -55,13 +54,12 @@ team-spotlight/
 ├── profile.html
 ├── about.html
 ├── projects.html
-├── careers.html
 ├── contact.html
 ├── main.js
 ├── styles.css
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml     ← Automatic deployment + validation
+│       └── main.yml     ← Automatic deployment + validation
 └── README.md
 text## 🔄 Continuous Integration & Deployment
 
@@ -81,10 +79,10 @@ This repository uses **GitHub Actions** with a custom workflow (`.github/workflo
 
 ## 👥 Team Members (Demo Data)
 
-- **Member 1** – Lead Designer
-- **Member 2** – Full-Stack Developer
-- **Member 3** – Content & Marketing Lead
-- **Member 4** – Product Photographer
+- **MOISES FERRERA** 
+- **ROMEL SANTOS**
+- **BENJAMIN ZARI**
+- **ANGELO AREVALO** 
 
 *(Easy to replace with real names and photos in `main.js`)*
 
@@ -94,7 +92,7 @@ This project was created for educational purposes. Feel free to use and modify i
 
 ---
 
-**Made For Sir RJ with ❤️ **
+**Made For Sir RJ with ❤️**
 
 ---
 
