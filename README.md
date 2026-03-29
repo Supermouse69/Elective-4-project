@@ -1,3 +1,6 @@
+# FOR TESTING THE REPO
+Push only at test1 branch the main branch is locked up for push to have version control mechanism
+
 # Team Spotlight
 
 **A beautiful, fully interactive front-end team introduction website**  
